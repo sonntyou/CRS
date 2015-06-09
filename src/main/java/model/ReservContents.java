@@ -3,8 +3,9 @@ package model;
 import java.io.Serializable;
 
 public class ReservContents implements Serializable {
-	private String locate,reserver,title,password,mpassword;
+	private String locate,reserver,title,password;
 	private String stime,ftime,date;
+	private String mpassword = "NIKUNIkU29nIkU2914nikUBy0024";
 
 	//コンストラクタ
 	public ReservContents(){}
@@ -13,13 +14,12 @@ public class ReservContents implements Serializable {
 		this.date=date;
 	}
 
-	public ReservContents(String locate, String reserver,String title,String password,String mpassword,String date,
+	public ReservContents(String locate, String reserver,String title,String password,String date,
 					String stime,String ftime) {
 					this.locate = locate;
 					this.reserver = reserver;
 					this.title = title;
 					this.password = password;
-					this.mpassword = mpassword;
 					this.date = date;
 					this.stime = stime;
 					this.ftime = ftime;
@@ -77,10 +77,10 @@ public class ReservContents implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public void setMpassword(String mpassword) {
-		this.mpassword = mpassword;
-	}
+//
+//	public void setMpassword(String mpassword) {
+//		this.mpassword = mpassword;
+//	}
 
 	public void setDate(String date) {
 		this.date = date;
