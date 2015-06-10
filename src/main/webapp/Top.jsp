@@ -27,7 +27,7 @@
 	border-style:none;
 }
 
-table
+.table
 {
   border-collapse: collapse;
   border-style:none;
@@ -39,10 +39,60 @@ table
 </head>
 
 <body>
+
+<%
+	String reserver = "タクミソ";
+	String stime = "12:00";
+	String ftime = "15:00";
+	String locate = "3";
+
+	//始まりの時間と分
+	String convshour=stime.substring(0,2);
+	String convsminute=stime.substring(stime.length()-2);
+
+	//終わりの時間と分
+	String convfhour=ftime.substring(0,2);
+	String convfminute=stime.substring(stime.length()-2);
+
+	//始まりの時間と分をint型に
+	int intshour= Integer.parseInt(convshour);
+	int intsminute= Integer.parseInt(convsminute);
+
+	//終わりのの時間と分をint型に
+	int intfhour= Integer.parseInt(convfhour);
+	int intfminute= Integer.parseInt(convfminute);
+
+	//場所をint型に
+	int intlocate =Integer.parseInt(locate);
+
+	//左端と右端の値
+	int leftside = (intlocate - 1) * 150;
+
+	//上端と下端の値
+	int px=60;
+	int topside = (intshour-9)*px + intsminute*px/60;
+	int height = ((intfhour*60+intfminute)-(intfhour*60+intfhour))*px/60;
+
+	System.out.println(stime + "～" + ftime);
+
+	%>
+
+<!--
+ style = "position:absolute; left:${leftside}px;top:${topside}px" height = ${height}
+ -->
+
+<table class="reserv" style = "position:absolute; left:${leftside}px;top:${topside}px" border="1">
+	<tr>
+		<th>
+			あうあう
+		</th>
+	</tr>
+</table>
+
 <div align="right">
 	<p>${today.today}の予定</p>
 	<div align="right">
-		<table class="table" border="1">
+		<table class="table" border="1" height="">
 
 			<tr>
  				<th class="timetitle" id="time"></th>
