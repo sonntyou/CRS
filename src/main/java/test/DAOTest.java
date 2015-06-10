@@ -2,7 +2,7 @@ package test;
 
 //import java.util.List;
 
-import model.PartReserv;
+import model.ReservContents;
 import dao.DAO;
 
 public class DAOTest {
@@ -25,17 +25,17 @@ public class DAOTest {
 //
 //		}
 
-		PartReserv takumiso = new PartReserv();
-		takumiso.setLocate("1");
+		ReservContents takumiso = new ReservContents();
+		takumiso.setLocate("3");
 		takumiso.setTitle("あかさたな");
 		takumiso.setReserver("飯野");
-		takumiso.setDate("2015-06-08");
-		takumiso.setStime("18:14");
-		takumiso.setFtime("20:00");
+		takumiso.setDate("2015-06-10");
+		takumiso.setStime("18:00");
+		takumiso.setFtime("21:00");
 		takumiso.setPassword("0000");
 
 
-		if(dao.delete(takumiso)){
+		if(dao.reserv(takumiso)){
 			System.out.println("登録されたよ");
 		}else{
 			System.out.println("正しくはじかれたかエラーです。");
