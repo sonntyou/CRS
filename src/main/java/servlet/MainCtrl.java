@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import model.Judge;
 import model.ReservContents;
 import model.ReservLogic;
+import model.Today;
 
 /**
  * Servlet implementation class MainCtrl
@@ -29,9 +30,12 @@ public class MainCtrl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String date =LocalDate.now().toString();
+		Today today = new Today(date);
 		ReservLogic reservlogic = new ReservLogic();
 
 		HttpSession session = request.getSession();
+
+		request.setAttribute("today", today);
 		session.setAttribute("reservlist", reservlogic.execute(date));
 
 		RequestDispatcher dispatcher=request.getRequestDispatcher("/Top.jsp");

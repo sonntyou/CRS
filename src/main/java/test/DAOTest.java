@@ -33,8 +33,7 @@ public class DAOTest {
 		takumiso.setStime("18:14");
 		takumiso.setFtime("20:00");
 		takumiso.setPassword("0000");
-		takumiso.setMpassword("takusomikke");
-		
+
 
 		if(dao.delete(takumiso)){
 			System.out.println("登録されたよ");

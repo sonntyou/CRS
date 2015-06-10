@@ -36,6 +36,7 @@ public class DAO {
 
 			ResultSet rs = pstmt.executeQuery();
 
+			//SELECTされたオブジェクトを1行ごとにReservContents型のyoyakuに格納し、Listに追加していく
 			while(rs.next()){
 				String locate =rs.getString("locate");
 				String reserver=rs.getString("name");
@@ -99,7 +100,7 @@ public class DAO {
 			int count=0;
 			while(rs.next()){
 
-				//データベース上のtime_stとtime_endをhh:mmの形で取ってきてそれぞれtime_stとtime_endに代入
+				//データベース上のtime_stとtime_endをHH:mmの形で取ってきてそれぞれtime_stとtime_endに代入
 				String time_st = new SimpleDateFormat("HH:mm").format(rs.getTimestamp("time_st"));
 				String time_end = new SimpleDateFormat("HH:mm").format(rs.getTimestamp("time_end"));
 
@@ -123,11 +124,10 @@ public class DAO {
 
 			}//while文の最後
 
-				//カウンターが0だったら＝1つでも予定がかぶっていたらfalseを返す
+				//カウンターが0だったら、つまり、1つでも予定がかぶっていたらfalseを返す
 				if(count == 1) {
 					return false;
 				}else{
-
 					//１つも予定がかぶっていなかったら、dateとstimeを足してpostgreSQLのtimestamp型に形成し、挿入
 					String timestampstime = date + " " + stime + ":00";
 					String timestampftime = date + " " + ftime + ":00";
@@ -140,15 +140,14 @@ public class DAO {
 					//SQL文(INSERT)の実行
 					int num = stmt.executeUpdate();
 
-					//
+					//INSERTが期待通り(1件だけ挿入すること)の結果でなければfalseを返す
 					if(num != 1){
 						return false;
 					}
 
+					//登録が正常に済めばtrueを返す
 					return true;
 				}
-
-
 
 			}catch(SQLException e){
 			e.printStackTrace();
@@ -166,7 +165,6 @@ public class DAO {
 				}
 			}
 		}
-
 	}//reservメソッドの終わり
 
 	//データベースから一致したデータを消す
@@ -190,10 +188,12 @@ public class DAO {
 			//SQL文の実行
 			int num = pstmt.executeUpdate();
 
+			//削除された行数が0行だったらfalseを返す
 			if(num == 0){
 				return false;
 			}
 
+			//DELETEが行われたらtrueを返す
 			return true;
 
 		}catch(SQLException e){
