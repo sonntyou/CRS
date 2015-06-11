@@ -14,8 +14,8 @@ public class ReservContents implements Serializable {
 		this.date=date;
 	}
 
-	public ReservContents(String locate, String reserver,String title,String password,String date,
-					String stime,String ftime) {
+	public ReservContents(String locate, String reserver,String title,String date,
+					String stime,String ftime,String password) {
 					this.locate = locate;
 					this.reserver = reserver;
 					this.title = title;

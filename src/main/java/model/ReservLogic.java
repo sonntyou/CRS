@@ -11,12 +11,12 @@ public class ReservLogic {
 		return dao.search(date);
 	}
 
-	public boolean execute(ReservContents reservcontents){
+	public int execute(ReservContents reservcontents){
 		DAO dao=new DAO();
 		return dao.reserv(reservcontents);
 	}
 
-	public boolean execute(PartReserv partreserv){
+	public int execute(PartReserv partreserv){
 		DAO dao =new DAO();
 		return dao.delete(partreserv);
 

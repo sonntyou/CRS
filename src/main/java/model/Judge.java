@@ -3,13 +3,13 @@ package model;
 import java.io.Serializable;
 
 public class Judge implements Serializable{
-	boolean judge;
+	private int judge=0;
 
-	public boolean isJudge() {
+	public int getJudge() {
 		return judge;
 	}
 
-	public void setJudge(boolean judge) {
+	public void setJudge(int judge) {
 		this.judge = judge;
 	}
 

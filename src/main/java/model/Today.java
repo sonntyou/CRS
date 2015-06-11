@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 
 public class Today implements Serializable {
-	private String today;
+	private String today, todaytime;
 
 	public Today(){
 
@@ -13,12 +13,22 @@ public class Today implements Serializable {
 		this.today=today;
 	}
 
-	public void settoday(String today){
+	//セッター
+	public void setToday(String today){
 		this.today=today;
 	}
 
-	public String gettoday(){
+	public void setTodayTime(String todaytime){
+		this.todaytime=todaytime;
+	}
+
+	//ゲッター
+	public String getToday(){
 		return today;
+	}
+
+	public String getTodayTime(){
+		return todaytime;
 	}
 
 }

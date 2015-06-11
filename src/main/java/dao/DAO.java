@@ -73,7 +73,7 @@ public class DAO {
 	}
 
 	//データベースと照合し、重複がなければ予約追加します
-	public boolean reserv(ReservContents reservcontents) {
+	public int reserv(ReservContents reservcontents) {
 		Connection conn = null;
 
 		try {
@@ -126,7 +126,7 @@ public class DAO {
 
 				//カウンターが0だったら、つまり、1つでも予定がかぶっていたらfalseを返す
 				if(count == 1) {
-					return false;
+					return 3;
 				}else{
 					//１つも予定がかぶっていなかったら、dateとstimeを足してpostgreSQLのtimestamp型に形成し、挿入
 					String timestampstime = date + " " + stime + ":00";
@@ -142,33 +142,33 @@ public class DAO {
 
 					//INSERTが期待通り(1件だけ挿入すること)の結果でなければfalseを返す
 					if(num != 1){
-						return false;
+						return 7;
 					}
 
 					//登録が正常に済めばtrueを返す
-					return true;
+					return 0;
 				}
 
 			}catch(SQLException e){
 			e.printStackTrace();
-			return false;
+			return 8;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			return false;
+			return 9;
 		}finally{
 			if(conn != null){
 				try{
 					conn.close();
 				}catch(SQLException e){
 					e.printStackTrace();
-					return false;
+					return 10;
 				}
 			}
 		}
 	}//reservメソッドの終わり
 
 	//データベースから一致したデータを消す
-	public boolean delete(PartReserv partreserv) {
+	public int delete(PartReserv partreserv) {
 		Connection conn = null;
 
 		try {
@@ -190,25 +190,25 @@ public class DAO {
 
 			//削除された行数が0行だったらfalseを返す
 			if(num == 0){
-				return false;
+				return 11;
 			}
 
 			//DELETEが行われたらtrueを返す
-			return true;
+			return 4;
 
 		}catch(SQLException e){
 			e.printStackTrace();
-			return false;
+			return 8;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			return false;
+			return 9;
 		}finally{
 			if(conn != null){
 				try{
 					conn.close();
 				}catch(SQLException e){
 					e.printStackTrace();
-					return false;
+					return 10;
 				}
 			}
 		}
