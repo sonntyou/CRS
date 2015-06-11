@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="model.ReservContents,java.util.List,java.util.Map,java.util.HashMap,java.time.LocalDate,java.time.YearMonth,java.time.format.DateTimeFormatter, model.Today" %>
+<%@ page import="model.ReservContents,java.util.List,
+java.util.Map,
+java.util.HashMap,
+java.time.LocalDate,
+java.time.YearMonth,
+java.time.format.DateTimeFormatter,
+model.Today" %>
 <!-- <link rel="StyleSheet" href="/CRS/src/main/webapp/Top.css" type="text/css">  -->
 <!DOCTYPE html>
 <html>

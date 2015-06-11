@@ -32,10 +32,19 @@ public class DetailCtrl extends HttpServlet {
 
 		String locate = request.getParameter("locate");
 		String stime = request.getParameter("stime");
-		PartReserv partreserv = new PartReserv();
-		for ( int i = 0; i < reservlist.size(); i++ ) {
-			if(locate == reservlist.get(i).getLocate() && stime == reservlist.get(i).getStime()) {
 
+	if(stime.equals(reservlist.get(1).getStime())){
+			System.out.println("stimeが一致");
+		}
+
+
+		PartReserv partreserv = new PartReserv();
+
+		for ( int i = 0; i < reservlist.size(); i++ ) {
+			System.out.println("for文が実行されました。");
+			if((locate.equals(reservlist.get(i).getLocate())) && (stime.equals(reservlist.get(i).getStime()))) {
+
+				System.out.println("ヒット！");
 				partreserv.setLocate(reservlist.get(i).getLocate());
 				partreserv.setReserver(reservlist.get(i).getReserver());
 				partreserv.setTitle(reservlist.get(i).getTitle());
@@ -43,11 +52,13 @@ public class DetailCtrl extends HttpServlet {
 				partreserv.setStime(reservlist.get(i).getStime());
 				partreserv.setFtime(reservlist.get(i).getFtime());
 				partreserv.setPassword(reservlist.get(i).getPassword());
-
-				session.setAttribute("partreserv",partreserv);
 			}
 
 		}
+
+		session.setAttribute("partreserv",partreserv);
+
+
 		RequestDispatcher dispatcher=request.getRequestDispatcher("/Detail.jsp");
 		dispatcher.forward(request,response);
 
