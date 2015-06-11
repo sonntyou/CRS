@@ -39,6 +39,8 @@ public class DayCtrl extends HttpServlet {
 		Judge judge = new Judge();
 		request.setAttribute("judge",judge);
 
+		session.setAttribute("reservlist",reservlogic.execute(date));
+
 		RequestDispatcher dispatcher=request.getRequestDispatcher("/Top.jsp");
 		dispatcher.forward(request,response);
 

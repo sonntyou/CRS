@@ -48,7 +48,7 @@ public class DAO {
 				String stime = new SimpleDateFormat("HH:mm").format(rs.getTimestamp("time_st"));
 				String ftime = new SimpleDateFormat("HH:mm").format(rs.getTimestamp("time_end"));;
 
-				ReservContents yoyaku = new ReservContents(locate,reserver,title,password,date,stime,ftime);
+				ReservContents yoyaku = new ReservContents(locate,reserver,title,date,stime,ftime,password);
 
 				reservList.add(yoyaku);
 			}
@@ -146,7 +146,7 @@ public class DAO {
 					}
 
 					//登録が正常に済めばtrueを返す
-					return 0;
+					return 5;
 				}
 
 			}catch(SQLException e){

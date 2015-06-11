@@ -1,12 +1,18 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.PartReserv;
+import model.ReservContents;
 
 /**
  * Servlet implementation class DetailCtrl
@@ -16,19 +22,35 @@ public class DetailCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("DetailCtrlが実行されたよ。"
-				+ "");
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+		//
+		HttpSession session =request.getSession();
+		List<ReservContents> reservlist = (List<ReservContents>) session.getAttribute("reservlist");
+
+		String locate = request.getParameter("locate");
+		String stime = request.getParameter("stime");
+		PartReserv partreserv = new PartReserv();
+		for ( int i = 0; i < reservlist.size(); i++ ) {
+			if(locate == reservlist.get(i).getLocate() && stime == reservlist.get(i).getStime()) {
+
+				partreserv.setLocate(reservlist.get(i).getLocate());
+				partreserv.setReserver(reservlist.get(i).getReserver());
+				partreserv.setTitle(reservlist.get(i).getTitle());
+				partreserv.setDate(reservlist.get(i).getDate());
+				partreserv.setStime(reservlist.get(i).getStime());
+				partreserv.setFtime(reservlist.get(i).getFtime());
+				partreserv.setPassword(reservlist.get(i).getPassword());
+
+				session.setAttribute("partreserv",partreserv);
+			}
+
+		}
+		RequestDispatcher dispatcher=request.getRequestDispatcher("/Detail.jsp");
+		dispatcher.forward(request,response);
+
+}
 
 }

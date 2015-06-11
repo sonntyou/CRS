@@ -25,17 +25,20 @@ import model.Today;
 public class MainCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-        ZonedDateTime now = ZonedDateTime.now();
-        String date = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        String todaytime = now.format(DateTimeFormatter.ofPattern("HH:mm"));
+	       ZonedDateTime now = ZonedDateTime.now();
+	        String date = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+	        String todaytime = now.format(DateTimeFormatter.ofPattern("HH:mm"));
 
-		Today today = new Today(date);
-		today.setTodayTime(todaytime);
+			Today today = new Today(date);
+			today.setTodayTime(todaytime);
+
+
 
 		ReservLogic reservlogic = new ReservLogic();
 
@@ -108,6 +111,9 @@ public class MainCtrl extends HttpServlet {
 		//重複があればfalseが帰ってきて、登録が完了していればtrueが返ってくる
 		judge.setJudge(reservlogic.execute(reservcontents));
 		request.setAttribute("judge", judge);
+
+		HttpSession session =request.getSession();
+		session.setAttribute("reservlist",reservlogic.execute(date));
 
 		RequestDispatcher dispatcher=request.getRequestDispatcher("/Top.jsp");
 		dispatcher.forward(request,response);

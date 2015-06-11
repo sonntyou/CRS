@@ -57,12 +57,12 @@
 	border-right: 1px solid #dddddd;
 
 }
-
+<!-- -->
 .dayreserv{
 	float:right;
 	padding: 30px;
   color: black;
-  background-color: #330099;
+  background-color: #FFFACD;
   padding: 15px;
   margin-bottom: 10px;
 	border-right: 1px solid #dddddd;
@@ -331,7 +331,7 @@ for(int i = year; i <=(year+10); i++){
 				<option value="3">リフレッシュルーム</option>
 			</select><br>
 
-			開始時間：
+開始時間：
 <select name="year">
 <%=yearchoices %>
 </select> 年
@@ -491,8 +491,14 @@ int height = ((intfhour*60+intfminute)-(intshour*60+intsminute))*px/60;
 <table class="reserv" style ="position:absolute; left:<%=leftside%>px ; top:<%=topside%>px" height=<%=height%> width=<%=width%> border="1">
 	<tr>
 		<th>
-			<a href="http://localhost:8080/CRS/MainCtrl"><%=reserver %></a><br>
+			<%=reserver %><br>
 			<%=stime %>～<%=ftime %>
+			<form action ="/CRS/DetailCtrl" method ="post">
+			<input type = "hidden" name="locate" value="<%=locate%>">
+			<input type = "hidden" name="stime" value="<%=stime%>">
+			<input type='submit' value='詳細'>
+
+			</form>
 		</th>
 	</tr>
 </table>
