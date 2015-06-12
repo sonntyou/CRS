@@ -20,11 +20,11 @@ String date = partreserv.getDate();
 String stime = partreserv.getStime();
 String ftime = partreserv.getFtime();
 
-if(locate == "1"){
+if(locate.equals("1")){
 	locate = "会議室";
-}else if(locate == "2"){
+}else if(locate.equals("2")){
 	locate = "応接室";
-}else if(locate == "3"){
+}else if(locate.equals("3")){
 	locate = "リフレッシュルーム";
 }
 
@@ -35,6 +35,12 @@ if(locate == "1"){
 場所：<%=locate %><br>
 開始時間：<%=stime %><br>
 終了時間：<%=ftime %><br>
+
+<form action ="/CRS/DeleteCtrl" method ="post">
+	パスワード：<input type="password" name="password">
+	<input type="submit" value =削除>
+</form>
+
 
 </body>
 </html>

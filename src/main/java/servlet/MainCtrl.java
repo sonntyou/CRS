@@ -13,9 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.DetailJudge;
 import model.Judge;
 import model.ReservContents;
 import model.ReservLogic;
+import model.TimeChoices;
 import model.Today;
 
 /**
@@ -38,6 +40,9 @@ public class MainCtrl extends HttpServlet {
 			Today today = new Today(date);
 			today.setTodayTime(todaytime);
 
+			TimeChoices timechoices = new TimeChoices(today);
+
+			DetailJudge detailjudge = new DetailJudge();
 
 
 		ReservLogic reservlogic = new ReservLogic();
@@ -47,8 +52,11 @@ public class MainCtrl extends HttpServlet {
 		//初めてJudgeが生まれる瞬間
 		Judge judge = new Judge();
 
-		request.setAttribute("judge", judge);
+		session.setAttribute("judge", judge);
 
+
+		session.setAttribute("detailjudge", detailjudge);
+		session.setAttribute("timechoices",timechoices);
 		session.setAttribute("today", today);
 		session.setAttribute("reservlist", reservlogic.execute(date));
 
@@ -67,7 +75,9 @@ public class MainCtrl extends HttpServlet {
 		Judge judge = new Judge();
 //		Judge judge =(Judge)request.getAttribute("judge");
 		judge.setJudge(2);
-		request.setAttribute("judge", judge);
+		HttpSession session =request.getSession();
+
+		session.setAttribute("judge", judge);
 
 		RequestDispatcher dispatcher=request.getRequestDispatcher("/Top.jsp");
 		dispatcher.forward(request,response);
@@ -82,7 +92,9 @@ public class MainCtrl extends HttpServlet {
 					+request.getParameter("sminute"))){
 			Judge judge= new Judge();
 			judge.setJudge(6);
-			request.setAttribute("judge",judge);
+			HttpSession session =request.getSession();
+
+			session.setAttribute("judge",judge);
 
 			RequestDispatcher dispatcher=request.getRequestDispatcher("/Top.jsp");
 			dispatcher.forward(request,response);
@@ -110,9 +122,10 @@ public class MainCtrl extends HttpServlet {
 //		Judge judge =(Judge)request.getAttribute("judge");
 		//重複があればfalseが帰ってきて、登録が完了していればtrueが返ってくる
 		judge.setJudge(reservlogic.execute(reservcontents));
-		request.setAttribute("judge", judge);
 
 		HttpSession session =request.getSession();
+		session.setAttribute("judge", judge);
+
 		session.setAttribute("reservlist",reservlogic.execute(date));
 
 		RequestDispatcher dispatcher=request.getRequestDispatcher("/Top.jsp");
@@ -123,7 +136,9 @@ public class MainCtrl extends HttpServlet {
 			Judge judge = new Judge();
 //			Judge judge =(Judge)request.getAttribute("judge");
 			judge.setJudge(1);
-			request.setAttribute("judge", judge);
+			HttpSession session =request.getSession();
+
+			session.setAttribute("judge", judge);
 
 			RequestDispatcher dispatcher=request.getRequestDispatcher("/Top.jsp");
 			dispatcher.forward(request,response);

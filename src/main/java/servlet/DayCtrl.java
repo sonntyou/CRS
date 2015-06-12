@@ -37,7 +37,7 @@ public class DayCtrl extends HttpServlet {
 		reservlogic.execute(date);
 
 		Judge judge = new Judge();
-		request.setAttribute("judge",judge);
+		session.setAttribute("judge",judge);
 
 		session.setAttribute("reservlist",reservlogic.execute(date));
 

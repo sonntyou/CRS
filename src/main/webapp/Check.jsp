@@ -8,7 +8,7 @@
 </head>
 <body>
 <%
-Judge judge =(Judge)request.getAttribute("judge");
+Judge judge =(Judge)session.getAttribute("judge");
 int intjudge =judge.getJudge();
 %>
 <% if(intjudge==0){%>
